@@ -1,0 +1,18 @@
+version: '3'
+services:
+  cli:
+    image: golang:1.9-stretch
+    volumes:
+     - .:/go/src/github.com/ditsara/fdb:cached
+    working_dir: /go/src/github.com/ditsara/fdb
+    depends_on:
+      - db
+  db:
+    image: postgres:9.4
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  data:
